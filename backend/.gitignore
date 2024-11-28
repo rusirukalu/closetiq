@@ -1,2 +1,15 @@
+# Node modules
+node_modules/
+
+# Environment variables file
 .env
-/Users/rusiru_kalu/Documents/GitHub/closetiq/backend/config/serviceAccountKey.json
+
+# Firebase Service Account Key (Sensitive data)
+config/serviceAccountKey.json
+
+# Logs
+logs/
+*.log
+
+# Operating system files (for example, macOS)
+.DS_Store
