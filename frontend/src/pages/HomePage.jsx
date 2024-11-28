@@ -14,7 +14,7 @@ const HomePage = () => {
 
   return (
     <div className="home-page">
-      <h1>AI Personal Stylist</h1>
+      <h1>closetIQ</h1>
       {!imageUploaded ? (
         <ImageUpload onImageUploaded={handleImageUploaded} />
       ) : (
