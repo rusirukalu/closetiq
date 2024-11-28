@@ -11,6 +11,9 @@
 # production
 /build
 
+# Firebase configuration file (API keys, sensitive data)
+src/config/firebase.js
+
 # misc
 .DS_Store
 .env.local
