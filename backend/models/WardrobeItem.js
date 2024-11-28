@@ -1,11 +1,12 @@
+// models/WardrobeItem.js
 const mongoose = require('mongoose');
 
 const wardrobeItemSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  category: { type: String, required: true },  // e.g., shirt, pants, jacket
-  color: { type: String },
-  occasion: { type: String },  // e.g., casual, formal
-  image: { type: String }  // URL or path to image
+  itemName: { type: String, required: true },
+  category: { type: String, required: true },
+  itemImage: { type: String, required: true },  // Store path to the uploaded image
 });
 
-module.exports = mongoose.model('WardrobeItem', wardrobeItemSchema);
+const WardrobeItem = mongoose.model('WardrobeItem', wardrobeItemSchema);
+
+module.exports = { WardrobeItem };

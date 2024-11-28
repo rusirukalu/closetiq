@@ -1,22 +1,27 @@
+// routes/uploadRoutes.js
 const express = require('express');
-const multer = require('multer');
-const uploadController = require('../controllers/uploadController');
 const router = express.Router();
+const upload = require('../config/multer');
+const { WardrobeItem } = require('../models/WardrobeItem'); // Model for wardrobe item
 
-// Multer storage configuration
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, './uploads/'); // Destination folder for uploads
-  },
-  filename: function (req, file, cb) {
-    // Generate a unique filename using the current timestamp
-    cb(null, Date.now() + '-' + file.originalname);
+// Image upload route
+router.post('/upload', upload, async (req, res) => {
+  try {
+    const { itemName, category } = req.body;  // Get item name and category from the request body
+    const itemImage = req.file.path;  // Path to the uploaded image
+
+    // Save the item to the MongoDB database
+    const newItem = new UserWardrobeItem({
+      itemName,
+      category,
+      itemImage,
+    });
+
+    await newItem.save();
+    res.status(200).send({ message: 'Item uploaded successfully!', item: newItem });
+  } catch (error) {
+    res.status(500).send({ error: 'Error uploading image' });
   }
 });
-
-const upload = multer({ storage: storage });
-
-// Route for uploading an image
-router.post('/upload', upload.single('image'), uploadController.handleImageUpload);
 
 module.exports = router;
