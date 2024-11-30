@@ -1,11 +1,11 @@
 // routes/uploadRoutes.js
 const express = require('express');
 const router = express.Router();
-const upload = require('../config/multer');
+const { upload, dimensionCheck } = require('../config/multer'); // Ensure multer config is imported correctly
 const { WardrobeItem } = require('../models/WardrobeItem'); // Model for wardrobe item
 
 // Image upload route
-router.post('/upload', upload, async (req, res) => {
+router.post('/upload', upload, dimensionCheck, async (req, res) => {
   try {
     const { itemName, category } = req.body;  // Get item name and category from the request body
     const itemImage = req.file.path;  // Path to the uploaded image
